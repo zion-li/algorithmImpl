@@ -12,11 +12,14 @@ public class SelectSortTest {
     @Test
     public void selectSortTest() {
         SelectSort selectSort = new SelectSort();
-        int[] input = GenerateRandom.generateRandomArray(40, 10, 100);
+        long startTime = System.currentTimeMillis();
+        int[] input = GenerateRandom.generateRandomArray(40000, 1, 1000);
         selectSort.selectSort(input, input.length);
+        long endTime = System.currentTimeMillis();
         for (int anInput : input) {
             System.out.println(anInput);
         }
+        System.out.println("used time 1673 :" + (endTime - startTime));
     }
 
 }

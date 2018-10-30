@@ -1,7 +1,9 @@
 package com.myself.sort;
 
+import com.myself.utils.Sweep;
+
 /**
- * 选择排序
+ * 选择排序 O（n^2）
  *
  * @author Created by zion
  * @Date 2018/10/30.
@@ -16,14 +18,9 @@ public class SelectSort {
                     minIndex = j;
                 }
             }
-            sweep(array, i, minIndex);
+            Sweep.sweep(array, i, minIndex);
         }
     }
 
-    private void sweep(int[] array, int i, int minIndex) {
-        int tmp = array[i];
-        array[i] = array[minIndex];
-        array[minIndex] = tmp;
-    }
 
 }
