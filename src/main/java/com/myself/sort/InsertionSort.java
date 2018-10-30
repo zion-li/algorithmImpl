@@ -24,8 +24,8 @@ public class InsertionSort {
     /**
      * 改进算法，将多次sweep变成赋值操作
      *
-     * @param array
-     * @param n
+     * @param array 输入数组
+     * @param n 数组长度
      */
     public void insertSortOptimize(int[] array, int n) {
         for (int i = 1; i < n; i++) {
