@@ -4,9 +4,11 @@ import com.myself.utils.Sweep;
 
 /**
  * 冒泡排序
+ * O(n²)
+ * 每次循环找到最大值放在最后，注意边界问题
  *
  * @author Created by zion
- * @Date 2018/10/30.
+ * @Date 2018/10/30
  */
 public class BubbleSort {
 

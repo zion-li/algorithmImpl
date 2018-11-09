@@ -4,6 +4,7 @@ import com.myself.utils.Sweep;
 
 /**
  * 选择排序 O（n^2）
+ * 每一趟选择出最小元素的下标，交换位置。
  *
  * @author Created by zion
  * @Date 2018/10/30.

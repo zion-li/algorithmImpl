@@ -25,7 +25,7 @@ public class InsertionSortTest {
     public void insertSortOptimize() throws Exception {
         InsertionSort insertionSort = new InsertionSort();
         long startTime = System.currentTimeMillis();
-        int[] input = GenerateRandom.generateRandomArray(40000, 1, 1000);
+        int[] input = GenerateRandom.generateRandomArray(100, 1, 100);
         insertionSort.insertSortOptimize(input, input.length);
         long endTime = System.currentTimeMillis();
         for (int anInput : input) {
