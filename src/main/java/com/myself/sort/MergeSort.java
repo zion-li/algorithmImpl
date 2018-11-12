@@ -23,7 +23,11 @@ public class MergeSort {
         if (l < r) {
             mergeSort(array, l, mid);
             mergeSort(array, mid + 1, r);
-            merge(array, l, mid, r);
+            //归并过程保证了从l到mid 以及 mid+1 到 r是有序的，所以当mid小于mid+1的时候，
+            //就已经不需要再一次的进行merge操作了、
+            if (array[mid] > array[mid + 1]) {
+                merge(array, l, mid, r);
+            }
             System.out.println(Arrays.toString(array));
         }
     }
