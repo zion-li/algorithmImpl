@@ -1,10 +1,13 @@
-package com.myself.sort;
+package com.myself.sort.inner.insert;
 
 import com.myself.utils.Sweep;
 
 /**
  * 希尔排序
  * 希尔排序是非稳定排序算法
+ * 平均：O(n^1.3)
+ * 最好：O(n)
+ * 最坏：O(n^2)
  *
  * @author Created by zion
  * @Date 2018/10/30.

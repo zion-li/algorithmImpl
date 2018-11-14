@@ -1,10 +1,12 @@
-package com.myself.sort;
+package com.myself.sort.inner.insert;
 
 import com.myself.utils.Sweep;
 
 /**
  * 插入排序算法
- * O(n^2)
+ * 平均：O(n^2)
+ * 最好：O(n)
+ * 最坏：O(n^2)
  * 理论上应该比选择排序块一点点
  *
  * @author Created by zion

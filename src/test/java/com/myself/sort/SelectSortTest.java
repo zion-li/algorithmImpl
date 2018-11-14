@@ -1,5 +1,6 @@
 package com.myself.sort;
 
+import com.myself.sort.inner.select.SelectSort;
 import com.myself.utils.GenerateRandom;
 import org.junit.Test;
 

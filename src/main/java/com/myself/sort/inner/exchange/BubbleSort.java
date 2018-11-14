@@ -1,10 +1,12 @@
-package com.myself.sort;
+package com.myself.sort.inner.exchange;
 
 import com.myself.utils.Sweep;
 
 /**
  * 冒泡排序
- * O(n²)
+ * 平均：O(n^2)
+ * 最好：O(n)
+ * 最坏：O(n^2)
  * 每次循环找到最大值放在最后，注意边界问题
  *
  * @author Created by zion
