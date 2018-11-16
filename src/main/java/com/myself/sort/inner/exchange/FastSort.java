@@ -1,9 +1,12 @@
 package com.myself.sort.inner.exchange;
 
+import com.myself.sort.inner.insert.InsertionSort;
 import com.myself.utils.Sweep;
 
+import java.util.Random;
+
 /**
- * [快速排序] O(nlogn)
+ * [快速排序]
  * 选择一个关键值作为基准值。比基准值小的都在左边序列（一般是无序的），
  * 比基准值大的都在右边（一般是无序的）。一般选择序列的第一个元素。
  * 左侧 arr[l+1...j]  arr[l]  arr[j+1...i-1]
@@ -23,7 +26,7 @@ public class FastSort {
 
     private void fastSort(int[] array, int l, int r) {
         if (l < r) {
-            int p = partition(array, l, r);
+            int p = partitionOptimizTwo(array, l, r);
             fastSort(array, l, p - 1);
             fastSort(array, p + 1, r);
         }
@@ -53,5 +56,104 @@ public class FastSort {
         }
         Sweep.sweep(array, l, j);
         return j;
+    }
+
+    /**
+     * 每一次的基准值位置变成随机获取，这种方法避免了元素向一段倾斜，造成O(O^2)
+     *
+     * @param array
+     * @param l
+     * @param r
+     * @return
+     */
+    private int partitionOptimizOne(int[] array, int l, int r) {
+        //使随机元素变成标准元素
+        Sweep.sweep(array, new Random().nextInt(r - l + 1) + l, l);
+        //标准元素
+        int e = array[l];
+        //j为小于e的区间，即刚开始的时候，小于e的元素区间为空
+        int j = l;
+        //分成两个部分，但是两个部分可以是无序的，i为将要移动的元素的下标
+        //大于e的区间是[j+1  j+1)所以大于e的区间也是空的
+        for (int i = l + 1; i <= r; i++) {
+            //不需要处理当前元素大于e的情况，这个时候只需要进行i++就可以了，
+            //仅仅需要处理元素小于e的情况
+            if (array[i] < e) {
+                Sweep.sweep(array, i, ++j);
+            }
+        }
+        Sweep.sweep(array, l, j);
+        return j;
+    }
+
+
+    /**
+     * 双路排序
+     *
+     * @param array
+     * @param l
+     * @param r
+     * @return
+     */
+    private int partitionOptimizTwo(int[] array, int l, int r) {
+        //使随机元素变成标准元素
+        Sweep.sweep(array, new Random().nextInt(r - l + 1) + l, l);
+        //标准元素
+        int e = array[l];
+        int i = l + 1, j = r;
+        while (true) {
+            while (i <= r && array[i] < e) {
+                i++;
+            }
+            while (j >= l + 1 && array[j] > e) {
+                j--;
+            }
+            if (i > j) {
+                break;
+            }
+            Sweep.sweep(array, i, j);
+            i++;
+            j--;
+        }
+        Sweep.sweep(array, l, j);
+        return j;
+    }
+
+    /**
+     * 三路排序 分为大于 等于 小于
+     * arr[l+1...lt]     arr[lt+1...i]  arr[gt...r]
+     *
+     * @param array
+     * @param l
+     * @param r
+     * @return
+     */
+    private void partitionOptimizThree(int[] array, int l, int r) {
+        if (l - r < 15) {
+            InsertionSort insertionSort = new InsertionSort();
+            insertionSort.insertSort(array, array.length);
+        }
+        Sweep.sweep(array, l, new Random().nextInt(r - l + 1) + l);
+
+        int e = array[l];
+        int lt = l;
+        int gt = r + 1;
+        int i = l + 1;
+        while (i < gt) {
+            if (array[i] < e) {
+                Sweep.sweep(array, i, lt + 1);
+                lt++;
+                i++;
+            } else if (array[i] > e) {
+                Sweep.sweep(array, i, gt - 1);
+                gt--;
+                //此时i不需要移动，因为依旧指向一个没有处理的元素
+            } else {
+                i++;
+            }
+        }
+        Sweep.sweep(array, l, lt);
+        partitionOptimizThree(array, l, lt - 1);
+        partitionOptimizThree(array, gt, r);
     }
 }
