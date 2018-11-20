@@ -27,6 +27,7 @@ public class FastSort {
     private void fastSort(int[] array, int l, int r) {
         if (l < r) {
             int p = partitionOptimizTwo(array, l, r);
+            //进过一次排序之后，p左侧的元素必定小于p，p右侧的元素必定大于p，所以不需要对p位置进行处理了
             fastSort(array, l, p - 1);
             fastSort(array, p + 1, r);
         }

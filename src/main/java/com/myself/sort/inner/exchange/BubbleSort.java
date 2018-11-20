@@ -14,6 +14,13 @@ import com.myself.utils.Sweep;
  */
 public class BubbleSort {
 
+    /**
+     * 过程：每一次遍历，都会把最大的元素放在最后
+     * 下一次循环重0到 上一次循环-1位置
+     *
+     * @param arry
+     * @param n
+     */
     public void bubbleSort(int[] arry, int n) {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n - 1 - i; j++) {

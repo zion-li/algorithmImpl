@@ -1,7 +1,5 @@
 package com.myself.sort.inner.merge;
 
-import java.util.Arrays;
-
 /**
  * 归并排序 [左右边都是闭区间]
  * 需要使用O（n）额外的空间
@@ -31,7 +29,6 @@ public class MergeSort {
             if (array[mid] > array[mid + 1]) {
                 merge(array, l, mid, r);
             }
-            System.out.println(Arrays.toString(array));
         }
     }
 
