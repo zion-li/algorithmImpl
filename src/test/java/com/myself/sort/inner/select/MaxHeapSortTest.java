@@ -43,10 +43,10 @@ public class MaxHeapSortTest {
     public void insert() throws Exception {
         MaxHeapSort maxHeapSort = new MaxHeapSort(5);
         for (int i = 0; i < 1000; i++) {
-            maxHeapSort.pull(new Random().nextInt(100000));
+            maxHeapSort.push(new Random().nextInt(100000));
         }
         while (!maxHeapSort.isEmpty()) {
-            System.out.println(maxHeapSort.push());
+            System.out.println(maxHeapSort.pull());
         }
     }
 

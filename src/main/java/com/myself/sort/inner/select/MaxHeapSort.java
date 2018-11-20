@@ -65,7 +65,7 @@ public class MaxHeapSort {
         return size == 0;
     }
 
-    public void pull(int value) {
+    public void push(int value) {
         if (size + 1 > capacity) {
             int[] tmp = new int[size * 2];
             System.arraycopy(data, 0, tmp, 0, data.length);
@@ -83,7 +83,7 @@ public class MaxHeapSort {
         }
     }
 
-    public Integer push() {
+    public Integer pull() {
         if (size == 0) {
             return null;
         }

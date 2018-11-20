@@ -59,7 +59,7 @@ public class IndexHeap {
      * @param i    索引位置
      * @param item 插入元素
      */
-    public void insert(int i, int item) throws IndexOutOfBoundsException {
+    public void push(int i, int item) throws IndexOutOfBoundsException {
         if (i + 1 < 1 && i + 1 > capacity) {
             throw new IndexOutOfBoundsException();
         }
@@ -80,7 +80,7 @@ public class IndexHeap {
         }
     }
 
-    public Integer extractMax() {
+    public Integer pull() {
         if (size == 0) {
             return null;
         }
@@ -109,7 +109,7 @@ public class IndexHeap {
     }
 
     private void shiftDown(int k) {
-        while (2 * k > size) {
+        while (2 * k <= size) {
             int j = 2 * k;
             if (j + 1 <= size && data[indexs[j + 1]] > data[indexs[j]]) {
                 j += 1;
