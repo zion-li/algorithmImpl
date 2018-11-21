@@ -33,10 +33,20 @@ public class BinaryTreeSearchTest {
         Object s = binaryTreeSearch.search(33);
         System.out.println(s);
 
-        TreeIterator treeIterator = new TreeIterator();
-        treeIterator.preOrder(binaryTreeSearch.getNode());
-        System.out.println();
-        treeIterator.innOrder(binaryTreeSearch.getNode());
+        System.out.println(binaryTreeSearch.getMin());
+        System.out.println(binaryTreeSearch.getMax());
+        binaryTreeSearch.deleteMin();
+        binaryTreeSearch.deleteMax();
+
+//
+//        TreeIterator treeIterator = new TreeIterator();
+//        treeIterator.preOrder(binaryTreeSearch.getNode());
+//        System.out.println();
+//        treeIterator.innOrder(binaryTreeSearch.getNode());
+//
+//        BFSSearch bfsSearch = new BFSSearch();
+//        bfsSearch.levelOrder(binaryTreeSearch.getNode());
+
 
     }
 

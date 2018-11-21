@@ -71,7 +71,7 @@ public class BinaryTreeSearch {
         if (node == null) {
             return false;
         }
-        if (Objects.equals(key, node.getKey())){
+        if (Objects.equals(key, node.getKey())) {
             return true;
         } else if (key < node.getKey()) {
             return containKey(node.getLeft(), key);
@@ -94,6 +94,121 @@ public class BinaryTreeSearch {
             return search(node.getLeft(), key);
         } else {
             return search(node.getRight(), key);
+        }
+    }
+
+    public TreeNode getMin() {
+        if (root == null) {
+            return null;
+        }
+        return getMin(root);
+    }
+
+    private TreeNode getMin(TreeNode node) {
+        if (node.getLeft() == null) {
+            return node;
+        }
+        return getMin(node.getLeft());
+    }
+
+    public TreeNode getMax() {
+        if (root == null) {
+            return null;
+        }
+        return getMax(root);
+    }
+
+    private TreeNode getMax(TreeNode node) {
+        if (node.getRight() == null) {
+            return node;
+        }
+        return getMax(node.getRight());
+    }
+
+    public void deleteMin() {
+        if (root != null) {
+            root = deleteMin(root);
+        }
+    }
+
+    private TreeNode deleteMin(TreeNode node) {
+        //如果当前节点的左孩子已经为空了，证明当前节点就是最小节点
+        if (node.getLeft() == null) {
+            size--;
+            //这么写已经覆盖了两种情况
+            return node.getRight();
+        }
+        node.setLeft(deleteMin(node.getLeft()));
+        return node;
+    }
+
+    public void deleteMax() {
+        if (root != null) {
+            root = deleteMax(root);
+        }
+    }
+
+    public TreeNode deleteMax(TreeNode node) {
+        //如果当前节点的左孩子已经为空了，证明当前节点就是最小节点
+        if (node.getRight() == null) {
+            size--;
+            //这么写已经覆盖了两种情况
+            return node.getLeft();
+        }
+        node.setLeft(deleteMin(node.getRight()));
+        return node;
+    }
+
+    /**
+     * 如果删除的结点不止最小值，也不止最大值
+     * 这时候应该找到这个结点d的s
+     * s=min(d->right)
+     * s-right=deleteMin(d_right)
+     * 更新树形结构
+     */
+    public void deleteKey(Integer key) {
+        if (root != null) {
+            root = deleteKey(root, key);
+        }
+    }
+
+    /**
+     * 用的是右子树的最小值
+     *
+     * @param node
+     * @param key
+     * @return
+     */
+    private TreeNode deleteKey(TreeNode node, Integer key) {
+        //寻找
+        if (node == null) {
+            return null;
+        }
+        if (key < node.getKey()) {
+            node.setLeft(deleteKey(node.getLeft(), key));
+            return node;
+        } else if (key > node.getKey()) {
+            node.setRight(deleteKey(node.getRight(), key));
+            return node;
+        } else {
+            //这块是真正的处理方法
+            if (node.getLeft() == null) {
+                size--;
+                //这么写已经覆盖了两种情况
+                return node.getRight();
+            }
+            if (node.getRight() == null) {
+                size--;
+                //这么写已经覆盖了两种情况
+                return node.getLeft();
+            }
+            //指向了node右子树的最小值
+            TreeNode nextNode = new TreeNode(getMin(node.getRight()));
+            //而，这里又删除了右子树的最小值，你删除了，但是有nextNode直向这个最小值，也会跟着没有了
+            //所以需要新生成一个结点
+            nextNode.setRight(deleteMin(node.getRight()));
+            nextNode.setLeft(node.getLeft());
+            return nextNode;
         }
     }
 }

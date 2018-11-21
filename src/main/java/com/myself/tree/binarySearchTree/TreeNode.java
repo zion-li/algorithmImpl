@@ -25,6 +25,13 @@ public class TreeNode {
         this.left = this.right = null;
     }
 
+    public TreeNode(TreeNode node) {
+        this.key = node.getKey();
+        this.value = node.getValue();
+        this.left = node.getLeft();
+        this.right = node.getRight();
+    }
+
     public Integer getKey() {
         return key;
     }
