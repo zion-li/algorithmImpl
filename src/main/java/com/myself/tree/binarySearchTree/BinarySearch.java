@@ -3,6 +3,7 @@ package com.myself.tree.binarySearchTree;
 /**
  * 二分查找
  * O（logN）
+ * 前提：一定有序
  *
  * @author Created by zion
  * @Date 2018/11/20.
