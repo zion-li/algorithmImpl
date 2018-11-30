@@ -31,5 +31,27 @@ public class BubbleSort {
         }
     }
 
+    /**
+     * 优化
+     */
+    public void bubbleSortOptim(int[] arry, int n) {
+        int pos = 0;
+        int flag;
+        int k = n - 1;
+        for (int i = 0; i < n; i++) {
+            flag = 0;
+            for (int j = 0; j < k; j++) {
+                if (arry[j] > arry[j + 1]) {
+                    Sweep.sweep(arry, j, j + 1);
+                    flag = 1;
+                    pos = j;
+                }
+            }
+            if (flag == 0) {
+                return;
+            }
+            k = pos;
+        }
+    }
 
 }
