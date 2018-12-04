@@ -6,6 +6,7 @@ import java.util.Objects;
  * 二分搜索树 存 key ：value
  * 每一个结点的左孩子小于结点，每一个结点的右孩子大于结点
  * 可以不是完全二叉树
+ * 可以退化成为 链表 ->O(N) 级别的
  *
  * @author Created by zion
  * @Date 2018/11/20.
