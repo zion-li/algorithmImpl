@@ -31,7 +31,7 @@ public class SparseGrahp {
     /**
      * 图的邻接表中存储节点的数组，g[i]为与g相邻的所有顶点的编号
      */
-    Vector<Vector<Integer>> g;
+    Vector<Vector<Integer>> g =new Vector<>();;
 
     /**
      * 构造函数
@@ -44,7 +44,7 @@ public class SparseGrahp {
         this.m = 0;
         this.director = director;
         for (int i = 0; i < n; i++) {
-            g.set(i, new Vector<Integer>());
+            g.add(i, new Vector<Integer>(n));
         }
     }
 
@@ -75,7 +75,7 @@ public class SparseGrahp {
      * @param w 结点w索引
      */
     public void addEdge(int v, int w) {
-        if (0 < v && v < n && 0 < w && w < n) {
+        if (0 <= v && v < n && 0 <= w && w < n) {
             g.get(v).add(w);
             if (v != w && !director) {
                 g.get(w).add(v);
