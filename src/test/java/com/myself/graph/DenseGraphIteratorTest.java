@@ -9,7 +9,6 @@ import org.junit.Test;
 public class DenseGraphIteratorTest {
     @Test
     public void begin() throws Exception {
-//        DenseGraph denseGraph=new DenseGraph()
     }
 
     @Test
