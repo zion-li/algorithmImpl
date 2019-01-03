@@ -13,6 +13,9 @@ public class DenseGraphIterator {
      */
     private DenseGraph denseGraph;
 
+    /**
+     * 图的哪一个结点
+     */
     private int v;
     /**
      * 当前的位置,不能从0开始，不见得有这条边，应该找第一个为true的

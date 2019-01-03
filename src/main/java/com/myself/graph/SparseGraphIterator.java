@@ -10,23 +10,28 @@ package com.myself.graph;
  */
 public class SparseGraphIterator {
 
+    /**
+     * 遍历的图
+     */
     private SparseGrahp sparseGrahp;
 
+    /**
+     * 图的哪一个结点
+     */
     private int v;
     /**
-     * 当前的位置
+     * 当前迭代到的位置
      */
     private int index;
 
     /**
      * @param sparseGrahp 迭代的图
      * @param v           迭代的图的结点
-     * @param index       迭代到哪里了
      */
-    public SparseGraphIterator(SparseGrahp sparseGrahp, int v, int index) {
+    public SparseGraphIterator(SparseGrahp sparseGrahp, int v) {
         this.sparseGrahp = sparseGrahp;
         this.v = v;
-        this.index = index;
+        this.index = 0;
     }
 
     public int begin() {

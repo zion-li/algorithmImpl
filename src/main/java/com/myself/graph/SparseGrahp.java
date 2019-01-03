@@ -31,7 +31,7 @@ public class SparseGrahp {
     /**
      * 图的邻接表中存储节点的数组，g[i]为与g相邻的所有顶点的编号
      */
-    Vector<Vector<Integer>> g =new Vector<>();;
+    Vector<Vector<Integer>> g =new Vector<>();
 
     /**
      * 构造函数
