@@ -85,7 +85,7 @@ public class SparseGrahp {
     }
 
     public boolean hasEdge(int v, int w) {
-        if (0 < v && v < n && 0 < w && w < n) {
+        if (0 <= v && v < n && 0 <= w && w < n) {
             for (int i = 0; i < g.get(v).size(); i++) {
                 if (g.get(v).get(i) == w) {
                     return true;

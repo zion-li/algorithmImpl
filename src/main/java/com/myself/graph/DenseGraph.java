@@ -70,7 +70,7 @@ public class DenseGraph {
      * @param w 结点w索引
      */
     public void addEdge(int v, int w) {
-        if (0 < v && v < n && 0 < w && w < n) {
+        if (0 <= v && v < n && 0 <= w && w < n) {
             if (hasEdge(v, w)) {
                 return;
             }
@@ -83,7 +83,7 @@ public class DenseGraph {
     }
 
     public boolean hasEdge(int v, int w) {
-        if (0 < v && v < n && 0 < w && w < n) {
+        if (0 <= v && v < n && 0 <= w && w < n) {
             return matrix[v][w];
         }
         return false;
