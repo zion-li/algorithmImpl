@@ -3,17 +3,12 @@ package com.myself.sort.inner.select;
 import com.myself.utils.Sweep;
 
 /**
- * 堆排序
- * 最坏，最好，平均时间复杂度均为O(nlogn)---->  优先队列 O(NlogM)
- * 不稳定排序
- * <p>
- * Binary Heap （大堆）任何一个结点都不大于他的父亲结点，必须是“完全二叉树”
+ * 最小堆排列
  *
  * @author Created by zion
- * @Date 2018/11/16.
+ * @Date 2019/1/4.
  */
-public class MaxHeapSort {
-
+public class MinHeapSort {
     /**
      * 使用数组来保存数据
      */
@@ -24,41 +19,24 @@ public class MaxHeapSort {
      */
     private int size;
 
-    /**
-     * 容量
-     */
     private int capacity;
 
-    public MaxHeapSort(int n) {
+    public MinHeapSort(int n) {
         this.data = new int[n + 1];
         this.size = 0;
         this.capacity = n;
     }
 
-    /**
-     * 构造函数直接将数据变成大堆
-     * <p>
-     * 这种插入方法会将O(nlogn)----> O(n)
-     * <p>
-     * 上面是每次只插入一个元素。
-     * 一下实现一次性将一个数组构建成堆
-     * 过程：heapify
-     * 1：所有的叶子结点本身就是一个最大堆
-     * 2：第一个不是叶子的结点的索引为（叶子结点/2）
-     * 3：数组 0 位置不使用
-     * 首先找到第一个不为叶子结点的元素的索引，这个元素以前都不是叶子结点
-     * 把不是叶子结点都执行 shiftDown（）方法就可以变成大堆了
-     */
-    public MaxHeapSort(int[] arr, int n) {
+    //创建堆
+    public MinHeapSort(int[] array, int n) {
         this.data = new int[n + 1];
-        capacity = n;
-        System.arraycopy(arr, 0, data, 1, n);
-        size = n;
+        this.capacity = n;
+        System.arraycopy(array, 0, data, 1, n);
+        this.size = n;
         for (int i = size / 2; i >= 1; i--) {
             shiftDown(data, i);
         }
     }
-
 
     public int size() {
         return size;
@@ -68,6 +46,14 @@ public class MaxHeapSort {
         return size == 0;
     }
 
+    /**
+     * 插入：
+     * 1）  将新插入的元素，放置到队列的尾部。
+     * 2）  若该元素小于其父节点，两个元素互换。（上移操作）
+     * 3）  迭代，直至该元素没有父节点或小于其父节点。
+     *
+     * @param value
+     */
     public void push(int value) {
         if (size + 1 > capacity) {
             int[] tmp = new int[size * 2];
@@ -80,12 +66,21 @@ public class MaxHeapSort {
     }
 
     private void shiftUp(int[] data, int k) {
-        while (k > 1 && data[k / 2] < data[k]) {
+        while (k > 1 && data[k / 2] > data[k]) {
             Sweep.sweep(data, k / 2, k);
             k /= 2;
         }
     }
 
+    /**
+     * 删除：
+     * 1）  移掉顶部的节点。
+     * 2）  将队末的元素放置到顶部。
+     * 3）  该节点与其子节点中较小的那个比较，若小于它，则交换位置，（下移操作）
+     * 4）  迭代，直到叶节点或不再比其子节点中较小那个大。
+     *
+     * @return
+     */
     public Integer pull() {
         if (size == 0) {
             return null;
@@ -109,10 +104,10 @@ public class MaxHeapSort {
         while (2 * k <= size) {
             int j = 2 * k;
             //有右孩子，同时右孩子大于左孩子，就需要与右孩子交换了
-            if (j + 1 <= size && data[j + 1] > data[j]) {
+            if (j + 1 <= size && data[j + 1] < data[j]) {
                 j = j + 1;
             }
-            if (data[k] > data[j]) {
+            if (data[k] < data[j]) {
                 break;
             }
             Sweep.sweep(data, k, j);
