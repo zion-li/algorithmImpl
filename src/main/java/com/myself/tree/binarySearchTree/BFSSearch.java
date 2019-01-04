@@ -1,7 +1,7 @@
 package com.myself.tree.binarySearchTree;
 
+import java.util.LinkedList;
 import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedDeque;
 
 /**
  * 广度优先遍历算法
@@ -11,7 +11,8 @@ import java.util.concurrent.ConcurrentLinkedDeque;
  * @Date 2018/11/21.
  */
 public class BFSSearch {
-    private Queue<TreeNode> queue = new ConcurrentLinkedDeque<>();
+
+    private Queue<TreeNode> queue = new LinkedList<>();
 
     public void levelOrder(TreeNode node) {
         queue.offer(node);
@@ -19,7 +20,6 @@ public class BFSSearch {
             TreeNode tmpNode = queue.poll();
 
             System.out.println(tmpNode.getKey() + ":" + tmpNode.getValue());
-
 
             if (tmpNode.getLeft() != null) {
                 queue.offer(tmpNode.getLeft());
