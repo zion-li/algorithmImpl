@@ -105,7 +105,7 @@ public class MaxHeapSort {
         //是否有左孩子
         while (2 * k <= size) {
             int j = 2 * k;
-            //有右孩子，同时有孩子大于左孩子，就需要与右孩子交换了
+            //有右孩子，同时右孩子大于左孩子，就需要与右孩子交换了
             if (j + 1 <= size && data[j + 1] > data[j]) {
                 j = j + 1;
             }

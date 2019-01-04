@@ -32,22 +32,20 @@ public class BubbleSort {
     }
 
     /**
-     * 优化
+     * 优化,如果已经是一个排好序的，就不就判断了
      */
     public void bubbleSortOptim(int[] arry, int n) {
+        boolean flag;
         int pos = 0;
-        int flag;
         int k = n - 1;
         for (int i = 0; i < n; i++) {
-            flag = 0;
-            for (int j = 0; j < k; j++) {
-                if (arry[j] > arry[j + 1]) {
-                    Sweep.sweep(arry, j, j + 1);
-                    flag = 1;
-                    pos = j;
-                }
+            flag = true;
+            for (int j = 0; j < k && arry[j] > arry[j + 1]; j++) {
+                Sweep.sweep(arry, j, j + 1);
+                flag = false;
+                pos = j;
             }
-            if (flag == 0) {
+            if (flag) {
                 return;
             }
             k = pos;
