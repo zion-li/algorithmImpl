@@ -21,7 +21,8 @@ import java.util.Random;
 public class FastSort {
 
     public void fastSort(int[] array, int n) {
-        fastSort(array, 0, array.length - 1);
+//        fastSort(array, 0, array.length - 1);
+        partitionOptimizThree(array, 0, array.length - 1);
     }
 
     private void fastSort(int[] array, int l, int r) {
@@ -54,6 +55,7 @@ public class FastSort {
             //不需要处理当前元素大于e的情况，这个时候只需要进行i++就可以了，
             //仅仅需要处理元素小于e的情况
             if (array[i] < e) {
+                //注意：重点在这  j的位置要不断向后移动哦
                 Sweep.sweep(array, i, ++j);
             }
         }
@@ -125,6 +127,7 @@ public class FastSort {
     /**
      * 三路排序 分为大于 等于 小于
      * arr[l+1...lt]     arr[lt+1...i]  arr[gt...r]
+     * 适用于有大量重复元素的排序
      *
      * @param array
      * @param l
@@ -132,16 +135,25 @@ public class FastSort {
      * @return
      */
     private void partitionOptimizThree(int[] array, int l, int r) {
-        if (l - r < 15) {
+        //
+        if (r - l < 15) {
             InsertionSort insertionSort = new InsertionSort();
             insertionSort.insertSort(array, array.length);
+            return;
         }
+        //上面代码是对这段的优化
+//        if(l>=r){
+//            return;
+//        }
         Sweep.sweep(array, l, new Random().nextInt(r - l + 1) + l);
 
+        //基准元素
         int e = array[l];
+
         int lt = l;
-        int gt = r + 1;
         int i = l + 1;
+        int gt = r + 1;
+
         while (i < gt) {
             if (array[i] < e) {
                 Sweep.sweep(array, i, lt + 1);

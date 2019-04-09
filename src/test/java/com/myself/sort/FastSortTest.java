@@ -13,7 +13,7 @@ public class FastSortTest {
     public void fastSortTest() throws Exception {
         FastSort fastSort = new FastSort();
         long startTime = System.currentTimeMillis();
-        int[] input = GenerateRandom.generateRandomArray(10000, 1, 100000000);
+        int[] input = GenerateRandom.generateRandomArray(1000, 1, 300);
         fastSort.fastSort(input, input.length);
         long endTime = System.currentTimeMillis();
         for (int anInput : input) {
