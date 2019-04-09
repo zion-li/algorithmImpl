@@ -15,15 +15,18 @@ import com.myself.utils.Sweep;
 public class BubbleSort {
 
     /**
-     * 理解：简单的冒泡排序算法就是从前到后两两比较，经过一轮循环找出当前的最大值放在最后。
-     * 之后所有比较范围，进行下一轮循环，这样一直进行下去。
+     * 理解：简单的冒泡排序算法就是从前到后两两比较，
+     * 经过一轮循环找出当前的最大值放在最后。
+     * 之后缩小比较范围，进行下一轮循环，这样一直进行下去。
      * 过程：每一次遍历，都会把最大的元素放在最后，下一次循环重0到 上一次循环-1位置
      *
      * @param arry 遍历的数据
      * @param n    数据的个数
      */
     public void bubbleSort(int[] arry, int n) {
+        //遍历了多少趟
         for (int i = 0; i < n; i++) {
+            //每一堂遍历的结尾位置迁移一个
             for (int j = 0; j < n - 1 - i; j++) {
                 if (arry[j] > arry[j + 1]) {
                     Sweep.sweep(arry, j, j + 1);
@@ -41,10 +44,12 @@ public class BubbleSort {
         int k = n - 1;
         for (int i = 0; i < n; i++) {
             flag = true;
-            for (int j = 0; j < k && arry[j] > arry[j + 1]; j++) {
-                Sweep.sweep(arry, j, j + 1);
-                flag = false;
-                pos = j;
+            for (int j = 0; j < k ; j++) {
+                if (arry[j] > arry[j + 1]){
+                    Sweep.sweep(arry, j, j + 1);
+                    flag = false;
+                    pos = j;
+                }
             }
             if (flag) {
                 return;

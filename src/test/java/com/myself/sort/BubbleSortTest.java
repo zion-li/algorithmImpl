@@ -13,8 +13,8 @@ public class BubbleSortTest {
     public void bubbleSort() throws Exception {
         BubbleSort bubbleSort=new BubbleSort();
         long startTime = System.currentTimeMillis();
-        int[] input = GenerateRandom.generateRandomArray(100, 1, 100);
-        bubbleSort.bubbleSort(input, input.length);
+        int[] input = GenerateRandom.generateRandomArray(30, 1, 100);
+        bubbleSort.bubbleSortOptim(input, input.length);
         long endTime = System.currentTimeMillis();
         for (int anInput : input) {
             System.out.println(anInput);
