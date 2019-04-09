@@ -7,6 +7,7 @@ package com.myself.utils;
 public class Sweep {
 
     public static void sweep(int[] array, int i, int minIndex) {
+        if (i == minIndex) return;
         int tmp = array[i];
         array[i] = array[minIndex];
         array[minIndex] = tmp;
